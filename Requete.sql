@@ -43,7 +43,8 @@ SELECT m.numMed,nomMed FROM medecin m, specialite s WHERE m.numSpec=s.numSpec AN
  #15
  SELECT d.numDept, nomDept, COUNT(m.numMalade) AS Nbre_Malade FROM departement d, malade m WHERE m.numDept=d.numDept GROUP BY d.numDept LIMIT 1
 
- #16
+#16
+ SELECT c.numChambre, categorie, type, COUNT(m.numMalade) AS Nbre_Malade FROM chambre c, malade m, lit l, occuper_lit o WHERE c.numChambre=l.numChambre AND m.numMalade=o.numMalade AND l.numLit=o.numLit GROUP BY c.numChambre DESC LIMIT 1;
 
 #17
 SELECT m.numMed, nomMed, nomSpec,MAX(COUNT(ma.numMalade) AS nb) FROM malade ma, medecin m, suivre s, specialite sp WHERE ma.numMalade=s.numMalade AND m.numMed=s.numMed AND m.numSpec=sp.numSpec GROUP BY m.numMed
